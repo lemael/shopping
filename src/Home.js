@@ -11,7 +11,14 @@ const Home = () => {
                     <div className="row justify-content-center">
                         {data.productData.map((item, index)=> {
                             return (
-                                <Itemcard img={item.img} title={item.title} desc={item.desc} preis={item.preis} key={index} />
+                                <Itemcard 
+                                    img={item.img} 
+                                    title={item.title} 
+                                    desc={item.desc} 
+                                    preis={item.preis} 
+                                    item={item} 
+                                    key={index} 
+                                />
                             )
                         })}
                         {/* alternativ <Itemcard img="" title="title" desc="desc"/>*/}
