@@ -6,30 +6,32 @@ const Cart = () => {
         totalUniqueItems,
         items,
         totalItems,
-        CartTotal,
+        cartTotal,
         updateItemQuantity,
         removeItem,
         emptyCart,
     } = useCart() ;
 
+   
     if(isEmpty) return <h1 className="text-center">Dein Karte ist Leer</h1>
     return (
         <section className="py-4 container">
             <div className="row justify-content-center">
                 <div className="col-12">
                     <h5>Karte ({totalUniqueItems}) total Items: ({totalItems})</h5>
-                
+               
                 <table className="table table-light table-hover m-0">
                     <tbody>
                     {items.map((item, index)=>{
                         return(
                             <tr key={index}>
                                 <td>
-                                    <img src={item.img} style={{height:'6rem'}}/>
+                                    <img src={item.id.img} style={{height:'6rem'}}/>
                                 </td>
-                                <td>title{item.title}</td>
-                                <td>preis {item.preis}</td>
-                                <td>Menge ({item.quantity})</td>
+                                   
+                                <td>title:  {item.id.title} </td>
+                                <td>preis:  {item.id.preis}</td>
+                                <td>Menge:  ({item.quantity})</td>
                                 <td>
                                     <button
                                         className="btn btn-info ms-2"
@@ -46,14 +48,16 @@ const Cart = () => {
                                     
                                 </td>
                             </tr>
+                            
                     )
                     })
                     }
                     </tbody>
                 </table>
+                
                 </div>
                 <div className="col-auto ms-auto">
-                    <h2>Total Price: {CartTotal} Euro</h2>
+                    <h2>Total Price: {items.reduce((total, item) => total + item.quantity * item.id.preis, 0)} Euro</h2>
                 </div>
                 <div className="col-auto">
                     <button 
@@ -65,7 +69,7 @@ const Cart = () => {
                 </div>
             
             </div>
-
+           
         </section>
         
     );
